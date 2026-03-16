@@ -1,0 +1,275 @@
+/* ============================================
+   ZoG CLAN WEBSITE — gallery.css
+   ============================================ */
+
+/* ── Gallery Item ── */
+.gallery-item {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(212, 175, 55, 0.12);
+  cursor: pointer;
+  background: var(--gray-dark);
+  transition: all var(--transition-mid);
+}
+
+.gallery-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(11, 11, 11, 0.8) 100%
+  );
+  z-index: 2;
+  transition: all var(--transition-mid);
+}
+
+.gallery-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  transition: all var(--transition-mid);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.gallery-item:hover {
+  transform: translateY(-6px) scale(1.02);
+  border-color: rgba(212, 175, 55, 0.5);
+  box-shadow:
+    0 20px 50px rgba(0,0,0,0.5),
+    0 0 30px rgba(212, 175, 55, 0.2),
+    inset 0 0 30px rgba(212, 175, 55, 0.05);
+}
+
+.gallery-item:hover::after {
+  border-color: rgba(212, 175, 55, 0.3);
+  box-shadow: inset 0 0 20px rgba(212, 175, 55, 0.08);
+}
+
+.gallery-item:hover::before {
+  background: linear-gradient(
+    to bottom,
+    rgba(11,11,11,0.1) 0%,
+    rgba(11, 11, 11, 0.85) 100%
+  );
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  display: block;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.08);
+}
+
+/* ── Gallery Item Overlay ── */
+.gallery-item-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px 16px 16px;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all var(--transition-mid);
+}
+
+.gallery-item:hover .gallery-item-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.gallery-item-num {
+  font-family: var(--font-display);
+  font-size: 11px;
+  color: var(--gold-primary);
+  text-shadow: var(--glow-gold-sm);
+  letter-spacing: 1px;
+}
+
+.gallery-item-zoom {
+  width: 32px;
+  height: 32px;
+  background: rgba(212, 175, 55, 0.15);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-accent);
+  font-size: 14px;
+  backdrop-filter: blur(8px);
+}
+
+/* ── Fullscreen Modal ── */
+.gallery-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.gallery-modal.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.modal-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  max-height: 90vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  transform: scale(0.9);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gallery-modal.open .modal-content {
+  transform: scale(1);
+}
+
+.modal-img-wrap {
+  position: relative;
+  max-height: 80vh;
+  border: var(--border-gold);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--glow-gold), 0 30px 100px rgba(0,0,0,0.6);
+}
+
+.modal-img {
+  max-height: 80vh;
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.modal-close {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  background: rgba(212, 175, 55, 0.1);
+  border: var(--border-gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--gold-accent);
+  font-size: 20px;
+  transition: all var(--transition-fast);
+  z-index: 10;
+}
+
+.modal-close:hover {
+  background: rgba(212, 175, 55, 0.25);
+  box-shadow: var(--glow-gold-sm);
+  transform: rotate(90deg);
+}
+
+.modal-nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background: rgba(212, 175, 55, 0.1);
+  border: var(--border-gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--gold-accent);
+  font-size: 20px;
+  transition: all var(--transition-fast);
+  z-index: 10;
+}
+
+.modal-nav:hover {
+  background: rgba(212, 175, 55, 0.25);
+  box-shadow: var(--glow-gold-sm);
+}
+
+.modal-prev { left: 20px; }
+.modal-next { right: 20px; }
+
+.modal-counter {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: rgba(212, 175, 55, 0.6);
+}
+
+/* ── Gallery Count Badge ── */
+.gallery-count-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background: rgba(212, 175, 55, 0.08);
+  border: var(--border-gold);
+  border-radius: 50px;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--gold-primary);
+  margin-left: 12px;
+  vertical-align: middle;
+}
+
+/* ── Tournament & Certificate specific ── */
+.gallery-pane[data-pane="tournament"] .gallery-item,
+.gallery-pane[data-pane="certificates"] .gallery-item {
+  aspect-ratio: 16 / 10;
+}
+
+/* ── Animation stagger for grid items ── */
+.gallery-item {
+  animation: galleryFadeIn 0.5s ease both;
+}
+
+@keyframes galleryFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

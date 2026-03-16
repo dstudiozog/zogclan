@@ -1,0 +1,339 @@
+/* ============================================
+   ZoG CLAN WEBSITE — hero.css
+   ============================================ */
+
+#hero {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--black-deep);
+}
+
+/* ── Cinematic Background ── */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(212,175,55,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212,175,55,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: gridPan 30s linear infinite;
+}
+
+@keyframes gridPan {
+  from { transform: perspective(600px) rotateX(30deg) translateY(0); }
+  to   { transform: perspective(600px) rotateX(30deg) translateY(60px); }
+}
+
+.hero-bg-radial {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(155,48,255,0.08) 0%, transparent 70%);
+}
+
+.hero-bg-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 300px;
+  background: linear-gradient(to top, var(--black-bg) 0%, transparent 100%);
+  z-index: 2;
+}
+
+.hero-bg-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.7) 100%);
+}
+
+/* ── Animated Rings ── */
+.hero-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: expandRing 6s ease-in-out infinite;
+}
+
+.hero-ring:nth-child(1) { width: 300px; height: 300px; animation-delay: 0s; }
+.hero-ring:nth-child(2) { width: 500px; height: 500px; animation-delay: 1.5s; }
+.hero-ring:nth-child(3) { width: 700px; height: 700px; animation-delay: 3s; }
+.hero-ring:nth-child(4) { width: 900px; height: 900px; animation-delay: 4.5s; }
+
+@keyframes expandRing {
+  0%   { opacity: 0.3; transform: translate(-50%, -50%) scale(0.95); }
+  50%  { opacity: 0.1; }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(1.05); }
+}
+
+/* ── Diagonal Lines ── */
+.hero-diag {
+  position: absolute;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent 0%, rgba(212,175,55,0.08) 40%, rgba(212,175,55,0.08) 60%, transparent 100%);
+  pointer-events: none;
+}
+
+.hero-diag:nth-child(1) { left: 20%; transform: rotate(15deg); }
+.hero-diag:nth-child(2) { right: 20%; transform: rotate(-15deg); }
+
+/* ── Hero Content ── */
+.hero-content {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  padding: 0 20px;
+  max-width: 900px;
+}
+
+/* ── Hero Clan Badge ── */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 20px;
+  border: var(--border-gold);
+  background: rgba(212, 175, 55, 0.06);
+  border-radius: 50px;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold-primary);
+  margin-bottom: 32px;
+  animation: fadeSlideDown 0.8s ease 0.2s both;
+}
+
+.hero-badge-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--gold-accent);
+  border-radius: 50%;
+  box-shadow: 0 0 6px var(--gold-accent);
+  animation: blinkDot 2s ease-in-out infinite;
+}
+
+@keyframes blinkDot {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+@keyframes fadeSlideDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Hero Logo ── */
+.hero-logo-wrap {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 30px;
+  animation: fadeSlideDown 0.9s ease 0.3s both;
+}
+
+.hero-logo {
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 0 20px rgba(212,175,55,0.6))
+    drop-shadow(0 0 60px rgba(155,48,255,0.4))
+    drop-shadow(0 0 100px rgba(212,175,55,0.2));
+  animation: heroLogoFloat 5s ease-in-out infinite;
+}
+
+@keyframes heroLogoFloat {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+
+/* ── Hero Title ── */
+.hero-title-wrap {
+  margin-bottom: 16px;
+  animation: fadeSlideDown 1s ease 0.4s both;
+}
+
+.hero-clan-tag {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  color: var(--gold-primary);
+  text-shadow: var(--glow-gold-sm);
+  margin-bottom: 8px;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 7vw, 88px);
+  font-weight: 900;
+  line-height: 0.95;
+  color: transparent;
+  background: linear-gradient(135deg, var(--gold-pale) 0%, var(--gold-primary) 40%, var(--gold-accent) 60%, var(--gold-deep) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-shadow: none;
+  letter-spacing: -1px;
+  position: relative;
+}
+
+.hero-title::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--gold-pale) 0%, var(--gold-primary) 40%, var(--gold-accent) 60%, var(--gold-deep) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: blur(20px);
+  opacity: 0.4;
+  z-index: -1;
+}
+
+/* ── Hero Subtitle ── */
+.hero-subtitle {
+  font-family: var(--font-heading);
+  font-size: clamp(14px, 2vw, 20px);
+  font-weight: 400;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: rgba(240, 234, 214, 0.6);
+  margin-bottom: 40px;
+  animation: fadeSlideDown 1s ease 0.5s both;
+}
+
+.hero-subtitle .dot {
+  color: var(--gold-primary);
+  margin: 0 8px;
+  text-shadow: var(--glow-gold-sm);
+}
+
+/* ── Hero Meta ── */
+.hero-meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 50px;
+  animation: fadeSlideDown 1s ease 0.6s both;
+}
+
+.hero-meta-item {
+  text-align: center;
+}
+
+.hero-meta-label {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(240, 234, 214, 0.35);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.hero-meta-value {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--gold-accent);
+}
+
+.hero-meta-divider {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, transparent, rgba(212,175,55,0.4), transparent);
+}
+
+/* ── Hero Buttons ── */
+.hero-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  animation: fadeSlideDown 1s ease 0.7s both;
+}
+
+/* ── Hero Scroll Hint ── */
+.hero-scroll {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  animation: fadeSlideDown 1s ease 1.2s both;
+  z-index: 5;
+}
+
+.hero-scroll span {
+  font-family: var(--font-ui);
+  font-size: 9px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(212, 175, 55, 0.4);
+}
+
+.hero-scroll-line {
+  width: 1px;
+  height: 50px;
+  background: linear-gradient(to bottom, rgba(212,175,55,0.6), transparent);
+  animation: scrollLineDrop 2s ease-in-out infinite;
+}
+
+@keyframes scrollLineDrop {
+  0%   { transform: scaleY(0); transform-origin: top; }
+  50%  { transform: scaleY(1); transform-origin: top; }
+  51%  { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* ── Hero Side Decorations ── */
+.hero-side-left,
+.hero-side-right {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  z-index: 5;
+  animation: fadeSlideDown 1s ease 1s both;
+}
+
+.hero-side-left { left: 40px; }
+.hero-side-right { right: 40px; }
+
+.hero-side-text {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(212, 175, 55, 0.35);
+  writing-mode: vertical-rl;
+}
+
+.hero-side-line {
+  width: 1px;
+  height: 80px;
+  background: linear-gradient(to bottom, rgba(212,175,55,0.3), transparent);
+}

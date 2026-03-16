@@ -1,0 +1,218 @@
+/* ============================================
+   ZoG CLAN WEBSITE — responsive.css
+   ============================================ */
+
+/* ── Tablet: max 1024px ── */
+@media (max-width: 1024px) {
+  :root { --section-pad: 90px; }
+
+  .container { padding: 0 30px; }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+    text-align: center;
+  }
+
+  .about-logo-wrap {
+    order: -1;
+  }
+
+  .about-logo-img {
+    width: 250px;
+    height: 250px;
+  }
+
+  .section-subtitle {
+    max-width: 100%;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .clan-stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .hero-side-left,
+  .hero-side-right {
+    display: none;
+  }
+}
+
+/* ── Mobile: max 768px ── */
+@media (max-width: 768px) {
+  :root { --section-pad: 70px; }
+
+  .container { padding: 0 20px; }
+
+  /* ── Navbar ── */
+  .nav-container { padding: 0 20px; }
+
+  .nav-toggle { display: flex; }
+
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background: rgba(11, 11, 11, 0.98);
+    backdrop-filter: blur(30px);
+    border-left: var(--border-gold);
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 80px 30px 40px;
+    gap: 4px;
+    transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1000;
+    box-shadow: -20px 0 60px rgba(0,0,0,0.5);
+  }
+
+  .nav-menu.open { right: 0; }
+
+  .nav-link {
+    font-size: 14px;
+    letter-spacing: 3px;
+    padding: 12px 0;
+    width: 100%;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.08);
+  }
+
+  .nav-link::after { display: none; }
+
+  .nav-cta {
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  /* ── Hero ── */
+  .hero-logo { width: 120px; height: 120px; }
+
+  .hero-meta {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .hero-meta-divider { display: none; }
+
+  .hero-buttons {
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  .btn-gold, .btn-outline {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* ── About ── */
+  .about-logo-img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .about-logo-wrap::before { width: 280px; height: 280px; }
+  .about-logo-wrap::after  { width: 220px; height: 220px; }
+
+  /* ── Stats ── */
+  .clan-stats {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .stat-card { padding: 28px; }
+
+  /* ── Gallery ── */
+  .gallery-tabs {
+    width: 100%;
+    justify-content: center;
+    overflow-x: auto;
+  }
+
+  .gallery-tab {
+    padding: 8px 14px;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  /* ── Modal Nav ── */
+  .modal-prev { left: 8px; }
+  .modal-next { right: 8px; }
+  .modal-nav  { width: 40px; height: 40px; font-size: 16px; }
+
+  /* ── Contact ── */
+  .contact-info { padding: 30px 20px; }
+  .contact-clan-logo { padding: 40px 20px; }
+  .contact-clan-logo img { width: 150px; height: 150px; }
+
+  /* ── Footer ── */
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    text-align: center;
+    gap: 40px !important;
+  }
+
+  .footer-links {
+    justify-content: center !important;
+  }
+
+  .footer-bottom-inner {
+    flex-direction: column !important;
+    gap: 10px !important;
+    text-align: center;
+  }
+}
+
+/* ── Small Mobile: max 480px ── */
+@media (max-width: 480px) {
+  :root { --section-pad: 60px; }
+
+  .hero-title {
+    font-size: 32px;
+    letter-spacing: -0.5px;
+  }
+
+  .hero-subtitle {
+    font-size: 12px;
+    letter-spacing: 3px;
+  }
+
+  .hero-badge {
+    font-size: 9px;
+    letter-spacing: 2px;
+    padding: 6px 14px;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .section-title {
+    font-size: 26px;
+  }
+
+  .hero-logo { width: 100px; height: 100px; }
+}
+
+/* ── Large Desktop: min 1440px ── */
+@media (min-width: 1440px) {
+  :root {
+    --section-pad: 140px;
+    --container-max: 1400px;
+  }
+}
